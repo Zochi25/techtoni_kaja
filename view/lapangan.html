@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>Nama PT | Administrasi</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../asset/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../asset/css/all.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../asset/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="sidebar">
+    <a id="lapangan" class="active">Input Data</a>
+    <a id="logout">Log Out</a>
+  </div>
+
+  <div class="main">
+    <p style="text-align: right">Tanggal: <span id="datetime"></span></p>
+    <div class="container-fluid">
+
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container-fluid">
+      <p class="copyright float-right">
+      <script type="text/JavaScript">
+        var theDate=new Date();
+        document.write("&copy; Techtonite "+ theDate.getFullYear());
+      </script>
+      </p>
+    </div>
+  </footer>
+  <script type="text/javascript" src="../asset/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../asset/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../asset/js/custom_sidebar_lapangan.js"></script>
+
+  <script>
+    var dt = new Date();
+    document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
+  </script>
+</body>
+</html>
