@@ -46,6 +46,7 @@ $tampil = mysqli_query($koneksi, $query);
       <table id="tabel_daftarproyek" class="table table-striped table-bordered">
         <thead>
           <tr>
+            <th style="width: 6%;">ID</th>
             <th>Nama Perusahaan</th>
             <th>Nama Proyek</th>
             <th>Penanggung Jawab</th>
@@ -124,6 +125,7 @@ $tampil = mysqli_query($koneksi, $query);
           {
             ?>
             <tr>
+             <td><?php echo $row["id"]; ?></td> 
              <td><?php echo $row["nama_pt"]; ?></td>
              <td><?php echo $row["nama_proyek"]; ?></td>
              <td><?php echo $row["penjawab"]; ?></td>
@@ -152,9 +154,6 @@ $tampil = mysqli_query($koneksi, $query);
         <form method="post" id="input_proyek" action="input_daftarproyek.php" class="tambah_proyek">
           <div class="form-group">
             <input type="text" class="form-control" name="nama_pt" id="nama_pt" placeholder="Nama Perusahaan" required>
-                    <div class="invalid-feedback">
-          Please choose a username.
-        </div>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" name="nama_proyek" id="nama_proyek" placeholder="Nama Proyek" required>
@@ -163,7 +162,7 @@ $tampil = mysqli_query($koneksi, $query);
             <input type="text" class="form-control" name="penjawab" id="penjawab" placeholder="Penanggung Jawab" required>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="kontak" id="kontak" placeholder="Kontak" required>
+            <input type="tel" class="form-control" name="kontak" id="kontak" placeholder="Kontak" minlength="12" maxlength="13" onkeypress="return hanyaAngka(event)" required>
           </div>
           <div class="form-group">
             <input type="submit" name="insert" id="insert" value="Simpan" class="btn btn-primary" />
@@ -186,7 +185,7 @@ $tampil = mysqli_query($koneksi, $query);
     </p>
   </div>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -196,10 +195,40 @@ $tampil = mysqli_query($koneksi, $query);
 <script>
   var dt = new Date();
   document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear());
+
+//refresh modal
+$(".modal").on("hidden.bs.modal", function(){
+    $(".modal-body1").html("");
+});
+
+  function hanyaAngka(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+ 
+    return false;
+    return true;
+}
+//error message
+// document.addEventListener("DOMContentLoaded", function() {
+//     var elements = document.getElementsByTagName("INPUT");
+//     for (var i = 0; i < elements.length; i++) {
+//         elements[i].oninvalid = function(e) {
+//             e.target.setCustomValidity("");
+//             if (!e.target.validity.valid) {
+//                 e.target.setCustomValidity("Kolom ini tidak boleh kosong");
+//             }
+//         };
+//         elements[i].oninput = function(e) {
+//             e.target.setCustomValidity("");
+//         };
+//     }
+// })
+
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#tabel_daftarproyek').DataTable({
+      "order": [[ 0, "desc" ]],
       "language": {
         "search": "Pencarian :",
         "lengthMenu": "Menampilkan _MENU_ data",
@@ -207,26 +236,6 @@ $tampil = mysqli_query($koneksi, $query);
       }
     });
   } );
-</script>
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
 </script>
 <script>  
  //  $(document).ready(function(){

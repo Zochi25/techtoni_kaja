@@ -7,6 +7,6 @@ include 'koneksi.php';
  $kontak = $_POST["kontak"];  
  $query = "INSERT INTO daftar_pt(nama_pt, nama_proyek, penjawab, kontak) VALUES('$nama_pt', '$nama_proyek', '$penjawab', '$kontak')";
  mysqli_query($koneksi,$query);
- //header("location:administrasi_daftarproyek.php");
+ header("location:administrasi_daftarproyek.php");
 
 ?>
